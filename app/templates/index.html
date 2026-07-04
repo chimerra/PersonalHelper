@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Персональный помощник</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app-bg"></div>
+
+  <header class="header">
+    <div class="header-top">
+      <div class="brand">
+        <span class="brand-icon">✦</span>
+        <div>
+          <h1>Персональный помощник</h1>
+          <p class="subtitle">от текста до действия</p>
+        </div>
+      </div>
+      <div class="current-user-box">
+        <span class="current-user-label">Текущий пользователь</span>
+        <select id="currentUserSelect" class="user-select"></select>
+        <div id="currentUserInfo" class="current-user-info"></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="capture-section card-glass">
+    <textarea id="captureText" rows="3" placeholder="Вставьте текст: задачу, идею, заметку…"></textarea>
+    <div class="capture-actions">
+      <button id="captureBtn" class="btn btn-gradient">Создать элемент</button>
+      <button id="resetBtn" class="btn btn-ghost-danger" type="button">Очистить базу</button>
+    </div>
+    <div id="captureResult" class="capture-result hidden"></div>
+  </section>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="tasks">Задачи</button>
+    <button class="tab" data-tab="notes">Заметки</button>
+    <button class="tab" data-tab="memory">Память</button>
+    <button class="tab" data-tab="audit">Журнал</button>
+    <button class="tab" data-tab="users">Пользователи</button>
+  </nav>
+
+  <main class="content">
+    <section id="tab-tasks" class="tab-panel active">
+      <div class="panel-toolbar">
+        <div class="filters">
+          <button class="filter-btn active" data-filter="open" data-panel="tasks">В процессе</button>
+          <button class="filter-btn" data-filter="done" data-panel="tasks">Выполнено</button>
+          <button class="filter-btn" data-filter="all" data-panel="tasks">Все</button>
+          <button class="filter-btn" data-filter="review" data-panel="tasks">Требует проверки</button>
+        </div>
+        <div class="export-actions">
+          <button type="button" class="btn btn-ghost btn-sm" data-export="inbox" data-format="json">Экспорт JSON</button>
+          <button type="button" class="btn btn-ghost btn-sm" data-export="inbox" data-format="csv">Экспорт CSV</button>
+        </div>
+      </div>
+      <div id="tasksList" class="cards-grid"></div>
+    </section>
+
+    <section id="tab-notes" class="tab-panel hidden">
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all" data-panel="notes">Все</button>
+        <button class="filter-btn" data-filter="review" data-panel="notes">Требует проверки</button>
+      </div>
+      <div id="notesList" class="cards-grid"></div>
+    </section>
+
+    <section id="tab-memory" class="tab-panel hidden">
+      <div class="memory-add card-glass">
+        <h3 class="section-title">Добавить в память</h3>
+        <div class="memory-form">
+          <div class="memory-form-field">
+            <label for="memoryKey">Ключ</label>
+            <input id="memoryKey" type="text" placeholder="priority_for_tag_работа" />
+          </div>
+          <div class="memory-form-field">
+            <label for="memoryValue">Значение</label>
+            <input id="memoryValue" type="text" placeholder="тег работа → high priority" />
+          </div>
+          <div class="memory-form-field">
+            <label for="memoryCategory">Категория</label>
+            <select id="memoryCategory">
+              <option value="preference">предпочтение</option>
+              <option value="context">контекст</option>
+              <option value="habit">привычка</option>
+              <option value="project">проект</option>
+              <option value="person">человек</option>
+              <option value="other">другое</option>
+            </select>
+          </div>
+          <div class="memory-form-actions">
+            <button id="memoryAddBtn" class="btn btn-gradient" type="button">Добавить в память</button>
+          </div>
+        </div>
+      </div>
+      <div class="filters">
+        <button class="filter-btn active" data-filter="active" data-panel="memory">Активные</button>
+        <button class="filter-btn" data-filter="review" data-panel="memory">Требует проверки</button>
+        <button class="filter-btn" data-filter="all" data-panel="memory">Все</button>
+      </div>
+      <div id="memoryList" class="memory-list"></div>
+    </section>
+
+    <section id="tab-audit" class="tab-panel hidden">
+      <div class="panel-toolbar">
+        <div class="filters">
+          <button class="filter-btn active" data-filter="actions" data-panel="audit">Действия</button>
+          <button class="filter-btn" data-filter="all" data-panel="audit">Все записи</button>
+          <button class="filter-btn" data-filter="errors" data-panel="audit">Ошибки / проверка</button>
+        </div>
+        <div class="export-actions">
+          <button type="button" class="btn btn-ghost btn-sm" data-export="audit" data-format="json">Скачать JSON</button>
+          <button type="button" class="btn btn-ghost btn-sm" data-export="audit" data-format="csv">Скачать CSV</button>
+        </div>
+      </div>
+      <div id="auditList" class="audit-list"></div>
+    </section>
+
+    <section id="tab-users" class="tab-panel hidden">
+      <div id="usersAdminPanel" class="users-admin hidden"></div>
+      <div id="usersList" class="cards-grid users-grid"></div>
+    </section>
+  </main>
+
+  <div id="modalOverlay" class="modal-overlay hidden">
+    <div class="modal" role="dialog">
+      <button id="closeModal" class="modal-close" type="button">&times;</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    container_name: personal-assistant
+    ports:
+      - "8000:8000"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-https://openai.api.proxyapi.ru/v1}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped

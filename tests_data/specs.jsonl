@@ -1,0 +1,11 @@
+{"id": 1, "title": "Слишком общий ввод", "expect_needs_review": true, "expect_min_items": 1, "expect_review_reasons": ["TOO_GENERAL", "LOW_CONFIDENCE", "UNSTRUCTURED"], "scenario": "vague_life_goal"}
+{"id": 2, "title": "Книга для чтения", "expect_needs_review": false, "expect_min_items": 1, "expect_item_types": ["task", "note"], "scenario": "reading_note"}
+{"id": 3, "title": "Условие: пикник или фильм", "expect_needs_review": false, "expect_min_items": 2, "expect_item_types": ["task"], "scenario": "conditional_split"}
+{"id": 4, "title": "Неопределённый выбор", "expect_needs_review": true, "expect_min_items": 1, "expect_review_reasons": ["LOW_CONFIDENCE", "MULTIPLE_INTENTS"], "scenario": "ambiguous_choice"}
+{"id": 5, "title": "Поток рабочих задач", "expect_needs_review": false, "expect_min_items": 3, "expect_item_types": ["task"], "scenario": "multi_task_work"}
+{"id": 6, "title": "Курсовая и проект с дедлайном", "expect_needs_review": false, "expect_min_items": 2, "expect_item_types": ["task"], "scenario": "deadline_priority"}
+{"id": 7, "title": "YouTube-ссылка", "expect_needs_review": false, "expect_min_items": 1, "expect_item_types": ["note"], "expect_url_preserved": true, "scenario": "url_in_note"}
+{"id": 8, "title": "Идея геймификации", "expect_needs_review": false, "expect_min_items": 1, "expect_item_types": ["note"], "scenario": "product_idea"}
+{"id": 9, "title": "Срочная презентация", "expect_needs_review": false, "expect_min_items": 1, "expect_item_types": ["task", "note"], "expect_priority": "high", "scenario": "urgent_deadline"}
+{"id": 10, "title": "Три дела в одном тексте", "expect_needs_review": false, "expect_min_items": 3, "expect_item_types": ["task"], "scenario": "multi_intent_split"}
+{"id": 11, "title": "Поток → автопамять (работа + важное)", "expect_needs_review": false, "expect_min_items": 0, "expect_memory_created": 1, "expect_memory_key_prefix": "priority_for_tag_", "scenario": "memory_auto_extract"}
